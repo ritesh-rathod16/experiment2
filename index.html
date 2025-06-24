@@ -3,1520 +3,1209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Studio Management System</title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <!-- FullCalendar CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>The Meat Barn - Farm-Fresh Meat & Dairy Delivered to Your Doorstep</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* ========== Global Styles ========== */
-        :root {
-            --primary-color: #4361ee;
-            --secondary-color: #3f37c9;
-            --accent-color: #4895ef;
-            --danger-color: #f72585;
-            --warning-color: #f77f00;
-            --success-color: #4cc9f0;
-            --dark-color: #1a1a2e;
-            --light-color: #f8f9fa;
-            --gray-color: #6c757d;
-            --border-radius: 8px;
-            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-
+        /* Global Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
             font-family: 'Poppins', sans-serif;
+            color: #333;
             line-height: 1.6;
-            color: var(--dark-color);
-            background-color: var(--light-color);
-            overflow-x: hidden;
         }
-
+        
         .container {
-            max-width: 1400px;
+            width: 90%;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
         }
-
-        /* ========== Typography ========== */
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--dark-color);
-        }
-
-        h1 { font-size: 2.5rem; }
-        h2 { font-size: 2rem; }
-        h3 { font-size: 1.75rem; }
-        h4 { font-size: 1.5rem; }
-        h5 { font-size: 1.25rem; }
-        h6 { font-size: 1rem; }
-
-        p {
-            margin-bottom: 1rem;
-            color: var(--gray-color);
-        }
-
+        
         a {
             text-decoration: none;
-            color: var(--primary-color);
-            transition: var(--transition);
+            color: inherit;
         }
-
-        a:hover {
-            color: var(--secondary-color);
-        }
-
-        /* ========== Utility Classes ========== */
-        .text-center { text-align: center; }
-        .text-right { text-align: right; }
-        .text-left { text-align: left; }
-        .text-primary { color: var(--primary-color); }
-        .text-secondary { color: var(--secondary-color); }
-        .text-success { color: var(--success-color); }
-        .text-danger { color: var(--danger-color); }
-        .text-warning { color: var(--warning-color); }
-        .text-dark { color: var(--dark-color); }
-        .text-light { color: var(--light-color); }
-        .text-gray { color: var(--gray-color); }
-
-        .bg-primary { background-color: var(--primary-color); }
-        .bg-secondary { background-color: var(--secondary-color); }
-        .bg-success { background-color: var(--success-color); }
-        .bg-danger { background-color: var(--danger-color); }
-        .bg-warning { background-color: var(--warning-color); }
-        .bg-dark { background-color: var(--dark-color); }
-        .bg-light { background-color: var(--light-color); }
-
-        .rounded { border-radius: var(--border-radius); }
-        .shadow { box-shadow: var(--box-shadow); }
-        .transition { transition: var(--transition); }
-
-        .d-flex { display: flex; }
-        .flex-column { flex-direction: column; }
-        .flex-row { flex-direction: row; }
-        .justify-content-center { justify-content: center; }
-        .justify-content-between { justify-content: space-between; }
-        .justify-content-around { justify-content: space-around; }
-        .align-items-center { align-items: center; }
-        .align-items-start { align-items: flex-start; }
-        .align-items-end { align-items: flex-end; }
-
-        .w-100 { width: 100%; }
-        .w-75 { width: 75%; }
-        .w-50 { width: 50%; }
-        .w-25 { width: 25%; }
-
-        .m-0 { margin: 0; }
-        .m-1 { margin: 0.25rem; }
-        .m-2 { margin: 0.5rem; }
-        .m-3 { margin: 1rem; }
-        .m-4 { margin: 1.5rem; }
-        .m-5 { margin: 3rem; }
-
-        .p-0 { padding: 0; }
-        .p-1 { padding: 0.25rem; }
-        .p-2 { padding: 0.5rem; }
-        .p-3 { padding: 1rem; }
-        .p-4 { padding: 1.5rem; }
-        .p-5 { padding: 3rem; }
-
-        /* ========== Buttons ========== */
+        
         .btn {
             display: inline-block;
-            font-weight: 500;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;
-            user-select: none;
-            border: 1px solid transparent;
-            padding: 0.5rem 1rem;
-            font-size: 1rem;
-            line-height: 1.5;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
+            padding: 12px 24px;
+            background-color: #e67e22;
+            color: white;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
             cursor: pointer;
         }
-
-        .btn-primary {
-            color: white;
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
+        
+        .btn:hover {
+            background-color: #d35400;
+            transform: translateY(-2px);
         }
-
-        .btn-primary:hover {
-            background-color: #3a56e8;
-            border-color: #3a56e8;
-        }
-
-        .btn-secondary {
-            color: white;
-            background-color: var(--secondary-color);
-            border-color: var(--secondary-color);
-        }
-
-        .btn-secondary:hover {
-            background-color: #3834b3;
-            border-color: #3834b3;
-        }
-
-        .btn-success {
-            color: white;
-            background-color: var(--success-color);
-            border-color: var(--success-color);
-        }
-
-        .btn-success:hover {
-            background-color: #3ab9d8;
-            border-color: #3ab9d8;
-        }
-
-        .btn-danger {
-            color: white;
-            background-color: var(--danger-color);
-            border-color: var(--danger-color);
-        }
-
-        .btn-danger:hover {
-            background-color: #e5177b;
-            border-color: #e5177b;
-        }
-
-        .btn-warning {
-            color: white;
-            background-color: var(--warning-color);
-            border-color: var(--warning-color);
-        }
-
-        .btn-warning:hover {
-            background-color: #e57600;
-            border-color: #e57600;
-        }
-
-        .btn-outline-primary {
-            color: var(--primary-color);
-            background-color: transparent;
-            border-color: var(--primary-color);
-        }
-
-        .btn-outline-primary:hover {
-            color: white;
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-
-        .btn-lg {
-            padding: 0.75rem 1.5rem;
-            font-size: 1.25rem;
-        }
-
-        .btn-sm {
-            padding: 0.25rem 0.5rem;
-            font-size: 0.875rem;
-        }
-
-        /* ========== Forms ========== */
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-control {
-            display: block;
-            width: 100%;
-            padding: 0.5rem 1rem;
-            font-size: 1rem;
-            line-height: 1.5;
-            color: var(--dark-color);
-            background-color: white;
-            background-clip: padding-box;
-            border: 1px solid #ced4da;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-        }
-
-        .form-control:focus {
-            color: var(--dark-color);
-            background-color: white;
-            border-color: var(--primary-color);
-            outline: 0;
-            box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
-        }
-
-        .form-label {
-            display: inline-block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-text {
-            display: block;
-            margin-top: 0.25rem;
-            font-size: 0.875rem;
-            color: var(--gray-color);
-        }
-
-        .form-check {
-            position: relative;
-            display: block;
-            padding-left: 1.25rem;
-        }
-
-        .form-check-input {
-            position: absolute;
-            margin-top: 0.3rem;
-            margin-left: -1.25rem;
-        }
-
-        .form-check-label {
-            margin-bottom: 0;
-        }
-
-        /* ========== Cards ========== */
-        .card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-            word-wrap: break-word;
-            background-color: white;
-            background-clip: border-box;
-            border: 1px solid rgba(0, 0, 0, 0.125);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
-
-        .card-header {
-            padding: 1rem 1.25rem;
-            margin-bottom: 0;
-            background-color: rgba(0, 0, 0, 0.03);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-        }
-
-        .card-body {
-            flex: 1 1 auto;
-            padding: 1.25rem;
-        }
-
-        .card-title {
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .card-text:last-child {
-            margin-bottom: 0;
-        }
-
-        .card-footer {
-            padding: 1rem 1.25rem;
-            background-color: rgba(0, 0, 0, 0.03);
-            border-top: 1px solid rgba(0, 0, 0, 0.125);
-        }
-
-        /* ========== Alerts ========== */
-        .alert {
-            position: relative;
-            padding: 1rem 1.25rem;
-            margin-bottom: 1rem;
-            border: 1px solid transparent;
-            border-radius: var(--border-radius);
-        }
-
-        .alert-primary {
-            color: #1a237e;
-            background-color: #c5cae9;
-            border-color: #b3b8e0;
-        }
-
-        .alert-secondary {
-            color: #311b92;
-            background-color: #d1c4e9;
-            border-color: #c0b3e0;
-        }
-
-        .alert-success {
-            color: #1b5e20;
-            background-color: #c8e6c9;
-            border-color: #b7d5b8;
-        }
-
-        .alert-danger {
-            color: #b71c1c;
-            background-color: #ffcdd2;
-            border-color: #ffbcc2;
-        }
-
-        .alert-warning {
-            color: #e65100;
-            background-color: #ffe0b2;
-            border-color: #ffd699;
-        }
-
-        .alert-info {
-            color: #01579b;
-            background-color: #b3e5fc;
-            border-color: #a2d4f3;
-        }
-
-        .alert-light {
-            color: #616161;
-            background-color: #f5f5f5;
-            border-color: #e5e5e5;
-        }
-
-        .alert-dark {
-            color: #212121;
-            background-color: #e0e0e0;
-            border-color: #d0d0d0;
-        }
-
-        /* ========== Badges ========== */
-        .badge {
-            display: inline-block;
-            padding: 0.25em 0.4em;
-            font-size: 75%;
-            font-weight: 700;
-            line-height: 1;
+        
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 30px;
             text-align: center;
-            white-space: nowrap;
-            vertical-align: baseline;
-            border-radius: 0.25rem;
-            transition: var(--transition);
+            color: #2c3e50;
+            position: relative;
         }
-
-        .badge-primary {
-            color: white;
-            background-color: var(--primary-color);
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: #e67e22;
+            margin: 10px auto 0;
         }
-
-        .badge-secondary {
-            color: white;
-            background-color: var(--secondary-color);
-        }
-
-        .badge-success {
-            color: white;
-            background-color: var(--success-color);
-        }
-
-        .badge-danger {
-            color: white;
-            background-color: var(--danger-color);
-        }
-
-        .badge-warning {
-            color: var(--dark-color);
-            background-color: var(--warning-color);
-        }
-
-        .badge-info {
-            color: white;
-            background-color: var(--accent-color);
-        }
-
-        .badge-light {
-            color: var(--dark-color);
-            background-color: var(--light-color);
-        }
-
-        .badge-dark {
-            color: white;
-            background-color: var(--dark-color);
-        }
-
-        /* ========== Navbar ========== */
-        .navbar {
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
-            z-index: 1000;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 1.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            box-shadow: var(--box-shadow);
-        }
-
-        .navbar-brand {
-            display: inline-block;
-            padding-top: 0.3125rem;
-            padding-bottom: 0.3125rem;
-            margin-right: 1rem;
-            font-size: 1.25rem;
-            line-height: inherit;
-            white-space: nowrap;
-            color: white;
-            font-weight: 600;
-        }
-
-        .navbar-nav {
-            display: flex;
-            flex-direction: row;
-            padding-left: 0;
-            margin-bottom: 0;
-            list-style: none;
-        }
-
-        .navbar-nav .nav-link {
-            padding: 0.5rem 1rem;
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 500;
-        }
-
-        .navbar-nav .nav-link:hover {
-            color: white;
-        }
-
-        .navbar-nav .nav-link.active {
-            color: white;
-            font-weight: 600;
-        }
-
-        .navbar-toggler {
-            padding: 0.25rem 0.75rem;
-            font-size: 1.25rem;
-            line-height: 1;
-            background-color: transparent;
-            border: 1px solid transparent;
-            border-radius: var(--border-radius);
-            color: white;
-            cursor: pointer;
-            display: none;
-        }
-
-        /* ========== Sidebar ========== */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
             z-index: 100;
-            padding: 70px 0 0;
-            width: 240px;
-            background-color: white;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
         }
-
-        .sidebar-header {
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
         }
-
-        .sidebar-menu {
-            padding: 0;
-            margin: 0;
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo-text h1 {
+            font-size: 22px;
+            color: #27ae60;
+            margin-bottom: 5px;
+        }
+        
+        .logo-text p {
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+        
+        nav ul {
+            display: flex;
             list-style: none;
         }
-
-        .sidebar-menu li {
+        
+        nav ul li {
+            margin-left: 25px;
             position: relative;
         }
-
-        .sidebar-menu li a {
+        
+        nav ul li a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #e67e22;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            border-radius: 4px;
+            padding: 10px 0;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            display: block;
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .header-icons {
             display: flex;
             align-items: center;
-            padding: 0.75rem 1.5rem;
-            color: var(--gray-color);
-            text-decoration: none;
-            transition: var(--transition);
         }
-
-        .sidebar-menu li a:hover {
-            color: var(--primary-color);
-            background-color: rgba(67, 97, 238, 0.1);
+        
+        .header-icons a {
+            margin-left: 15px;
+            font-size: 18px;
+            color: #34495e;
         }
-
-        .sidebar-menu li a.active {
-            color: var(--primary-color);
-            background-color: rgba(67, 97, 238, 0.1);
-            font-weight: 500;
+        
+        .search-bar {
+            position: relative;
         }
-
-        .sidebar-menu li a i {
-            margin-right: 0.75rem;
-            font-size: 1.1rem;
+        
+        .search-bar input {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            width: 200px;
         }
-
-        .sidebar-menu .menu-title {
-            padding: 0.75rem 1.5rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--gray-color);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        
+        .search-bar i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7f8c8d;
         }
-
-        /* ========== Main Content ========== */
-        .main-content {
-            margin-left: 240px;
-            padding: 1.5rem;
-            min-height: calc(100vh - 70px);
-            transition: var(--transition);
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-
-        /* ========== Dashboard ========== */
-        .dashboard-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .stat-card {
-            background-color: white;
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            box-shadow: var(--box-shadow);
-            transition: var(--transition);
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .stat-card .stat-title {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--gray-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-card .stat-value {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--dark-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-card .stat-change {
-            font-size: 0.75rem;
-            color: var(--gray-color);
-        }
-
-        .stat-card .stat-change.up {
-            color: var(--success-color);
-        }
-
-        .stat-card .stat-change.down {
-            color: var(--danger-color);
-        }
-
-        /* ========== Tables ========== */
-        .table {
-            width: 100%;
-            margin-bottom: 1.5rem;
-            color: var(--dark-color);
-            border-collapse: collapse;
-        }
-
-        .table th,
-        .table td {
-            padding: 0.75rem;
-            vertical-align: top;
-            border-top: 1px solid #dee2e6;
-        }
-
-        .table thead th {
-            vertical-align: bottom;
-            border-bottom: 2px solid #dee2e6;
-            font-weight: 600;
-            background-color: rgba(0, 0, 0, 0.03);
-        }
-
-        .table tbody + tbody {
-            border-top: 2px solid #dee2e6;
-        }
-
-        .table-striped tbody tr:nth-of-type(odd) {
-            background-color: rgba(0, 0, 0, 0.02);
-        }
-
-        .table-hover tbody tr:hover {
-            background-color: rgba(0, 0, 0, 0.04);
-        }
-
-        /* ========== Modals ========== */
-        .modal {
+        
+        .whatsapp-float {
             position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1050;
-            display: none;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-color: #f9f9f9;
+            padding: 50px 0;
+        }
+        
+        .hero-slider {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .slide {
+            position: absolute;
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            outline: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-dialog {
-            position: relative;
-            width: auto;
-            margin: 0.5rem;
-            pointer-events: none;
-            max-width: 800px;
-            margin: 1.75rem auto;
-        }
-
-        .modal-content {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            pointer-events: auto;
-            background-color: white;
-            background-clip: padding-box;
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            border-radius: var(--border-radius);
-            outline: 0;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        }
-
-        .modal-header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            padding: 1rem;
-            border-bottom: 1px solid #dee2e6;
-        }
-
-        .modal-title {
-            margin-bottom: 0;
-            line-height: 1.5;
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .modal-body {
-            position: relative;
-            flex: 1 1 auto;
-            padding: 1rem;
-        }
-
-        .modal-footer {
+            background-size: cover;
+            background-position: center;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            padding: 1rem;
-            border-top: 1px solid #dee2e6;
+            padding: 0 60px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
-
-        /* ========== Tabs ========== */
-        .nav-tabs {
-            border-bottom: 1px solid #dee2e6;
+        
+        .slide.active {
+            opacity: 1;
         }
-
-        .nav-tabs .nav-item {
-            margin-bottom: -1px;
+        
+        .slide-content {
+            max-width: 500px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 8px;
         }
-
-        .nav-tabs .nav-link {
-            border: 1px solid transparent;
-            border-top-left-radius: var(--border-radius);
-            border-top-right-radius: var(--border-radius);
-            padding: 0.5rem 1rem;
-            color: var(--gray-color);
-            font-weight: 500;
+        
+        .slide-content h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #2c3e50;
         }
-
-        .nav-tabs .nav-link:hover {
-            border-color: #e9ecef #e9ecef #dee2e6;
-            color: var(--primary-color);
+        
+        .slide-content p {
+            margin-bottom: 20px;
+            color: #7f8c8d;
         }
-
-        .nav-tabs .nav-link.active {
-            color: var(--primary-color);
+        
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 30px;
+        }
+        
+        .badge {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+        
+        .badge i {
+            margin-right: 8px;
+            font-size: 20px;
+            color: #27ae60;
+        }
+        
+        /* Featured Categories */
+        .featured-categories {
+            padding: 60px 0;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .category-card {
+            position: relative;
+            height: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 20px;
+            color: white;
+        }
+        
+        .category-overlay h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        /* Best Selling Products */
+        .best-sellers {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .product-carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px 0;
+            scroll-snap-type: x mandatory;
+        }
+        
+        .product-card {
+            min-width: 250px;
             background-color: white;
-            border-color: #dee2e6 #dee2e6 white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            scroll-snap-align: start;
         }
-
-        .tab-content {
-            padding: 1rem;
+        
+        .product-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-info h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .weight-options {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .weight-option {
+            font-size: 12px;
+            padding: 4px 8px;
+            background-color: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+        .price {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .current-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #e74c3c;
+            margin-right: 10px;
+        }
+        
+        .original-price {
+            font-size: 14px;
+            text-decoration: line-through;
+            color: #95a5a6;
+        }
+        
+        .discount {
+            font-size: 12px;
+            background-color: #fdeaea;
+            color: #e74c3c;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+        }
+        
+        /* Promotional Banners */
+        .promo-banners {
+            padding: 40px 0;
+        }
+        
+        .promo-banner {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .promo-banner:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+        
+        .promo-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 500px;
+        }
+        
+        .promo-content h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .promo-content p {
+            margin-bottom: 15px;
+        }
+        
+        /* USPs Section */
+        .usp-section {
+            padding: 60px 0;
+            background-color: #2c3e50;
+            color: white;
+        }
+        
+        .usp-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .usp-item {
+            text-align: center;
+        }
+        
+        .usp-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #e67e22;
+        }
+        
+        .usp-item h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .usp-item p {
+            font-size: 14px;
+            color: #bdc3c7;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 60px 0;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
             background-color: white;
-            border: 1px solid #dee2e6;
-            border-top: 0;
-            border-bottom-left-radius: var(--border-radius);
-            border-bottom-right-radius: var(--border-radius);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: none;
         }
-
-        /* ========== Responsive Design ========== */
+        
+        .testimonial.active {
+            display: block;
+        }
+        
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .stars {
+            color: #f1c40f;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #34495e;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background-color: #e67e22;
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            font-size: 14px;
+            color: #bdc3c7;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #e67e22;
+        }
+        
+        .newsletter input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .payment-methods img {
+            height: 25px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #e67e22;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #3d566e;
+            font-size: 14px;
+            color: #bdc3c7;
+        }
+        
+        /* Responsive Styles */
         @media (max-width: 992px) {
-            .sidebar {
-                transform: translateX(-100%);
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             
-            .sidebar.active {
-                transform: translateX(0);
+            .usp-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             
-            .main-content {
-                margin-left: 0;
-            }
-            
-            .navbar-toggler {
-                display: block;
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
-
+        
         @media (max-width: 768px) {
-            .dashboard-stats {
+            .header-top {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                margin-bottom: 15px;
+            }
+            
+            .hero-slider {
+                height: 300px;
+            }
+            
+            .slide-content {
+                padding: 20px;
+            }
+            
+            .slide-content h2 {
+                font-size: 24px;
+            }
+            
+            .trust-badges {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .promo-banner {
+                height: 150px;
+                padding: 0 20px;
+            }
+            
+            .promo-content h2 {
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .category-grid {
                 grid-template-columns: 1fr;
             }
             
-            .table-responsive {
-                display: block;
-                width: 100%;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
+            .usp-grid {
+                grid-template-columns: 1fr;
             }
-        }
-
-        /* ========== Dark Mode ========== */
-        .dark-mode {
-            background-color: #121212;
-            color: #e0e0e0;
-        }
-        
-        .dark-mode .card,
-        .dark-mode .stat-card,
-        .dark-mode .table,
-        .dark-mode .table thead th,
-        .dark-mode .modal-content,
-        .dark-mode .tab-content {
-            background-color: #1e1e1e;
-            color: #e0e0e0;
-            border-color: #333;
-        }
-        
-        .dark-mode .table th,
-        .dark-mode .table td {
-            border-color: #333;
-        }
-        
-        .dark-mode .text-dark {
-            color: #e0e0e0 !important;
-        }
-        
-        .dark-mode .text-gray {
-            color: #9e9e9e !important;
-        }
-        
-        .dark-mode .sidebar {
-            background-color: #1e1e1e;
-        }
-        
-        .dark-mode .sidebar-menu li a {
-            color: #9e9e9e;
-        }
-        
-        .dark-mode .sidebar-menu li a:hover,
-        .dark-mode .sidebar-menu li a.active {
-            color: var(--primary-color);
-            background-color: rgba(67, 97, 238, 0.1);
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .slide {
+                padding: 0 20px;
+            }
+            
+            .slide-content {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- ========== Navbar ========== -->
-    <nav class="navbar">
+    <!-- Header Section -->
+    <header>
         <div class="container">
-            <a href="#" class="navbar-brand">
-                <i class="fas fa-play-circle"></i> StudioPlay Pro
-            </a>
-            
-            <button class="navbar-toggler" id="sidebarToggle">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Calendar</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Equipment</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Team</a>
-                </li>
-            </ul>
-            
-            <div class="user-actions">
-                <button class="btn btn-outline-light btn-sm mr-2" id="darkModeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <div class="dropdown">
-                    <button class="btn btn-light btn-sm dropdown-toggle" id="userDropdown">
-                        <i class="fas fa-user-circle"></i> Admin
-                    </button>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item">Profile</a>
-                        <a href="#" class="dropdown-item">Settings</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">Logout</a>
+            <div class="header-top">
+                <div class="logo">
+                    <img src="the_meat_barn_logo.png" alt="FarmFresh Logo">
+                    <div class="logo-text">
+                        <h1>FarmFresh</h1>
+                        <p>Farm-Fresh Meat & Dairy Delivered to Your Doorstep</p>
                     </div>
                 </div>
+                
+                <nav>
+                    <ul>
+                        <li class="dropdown">
+                            <a href="#">Shop by Category <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="#">Goat</a>
+                                <a href="#">Chicken</a>
+                                <a href="#">Seafood</a>
+                                <a href="#">Dairy</a>
+                            </div>
+                        </li>
+                        <li><a href="#">Offers</a></li>
+                        <li><a href="#">Recipes/Blog</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-icons">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search products...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <a href="#"><i class="far fa-user"></i></a>
+                    <a href="#" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">3</span>
+                    </a>
+                </div>
             </div>
-        </div>
-    </nav>
-
-    <!-- ========== Sidebar ========== -->
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h4>Studio Management</h4>
         </div>
         
-        <ul class="sidebar-menu">
-            <li class="menu-title">Main</li>
-            <li>
-                <a href="#" class="active">
-                    <i class="fas fa-tachometer-alt"></i> Dashboard
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-calendar-alt"></i> Calendar
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-project-diagram"></i> Projects
-                </a>
-            </li>
-            
-            <li class="menu-title">Resources</li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-camera"></i> Equipment
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-microphone"></i> Audio Gear
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-lightbulb"></i> Lighting
-                </a>
-            </li>
-            
-            <li class="menu-title">Team</li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-users"></i> Members
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-user-tie"></i> Staff
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-clock"></i> Time Tracking
-                </a>
-            </li>
-            
-            <li class="menu-title">Administration</li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-cog"></i> Settings
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-chart-line"></i> Analytics
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-file-invoice-dollar"></i> Billing
-                </a>
-            </li>
-        </ul>
-    </div>
-
-    <!-- ========== Main Content ========== -->
-    <div class="main-content">
+        <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="container">
-            <!-- Dashboard Header -->
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2>Studio Dashboard</h2>
-                <div>
-                    <button class="btn btn-primary">
-                        <i class="fas fa-plus"></i> New Booking
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Stats Cards -->
-            <div class="dashboard-stats">
-                <div class="stat-card">
-                    <div class="stat-title">Active Bookings</div>
-                    <div class="stat-value">12</div>
-                    <div class="stat-change up">
-                        <i class="fas fa-arrow-up"></i> 3 from last week
+            <div class="hero-slider">
+                <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="slide-content">
+                        <h2>Fresh Goat Meat – 10% Off First Order!</h2>
+                        <p>Premium quality, hygienically packed, delivered to your doorstep</p>
+                        <a href="#" class="btn">Shop Now</a>
                     </div>
                 </div>
-                
-                <div class="stat-card">
-                    <div class="stat-title">Available Equipment</div>
-                    <div class="stat-value">24/36</div>
-                    <div class="stat-change down">
-                        <i class="fas fa-arrow-down"></i> 2 in maintenance
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1550583724-b2692b85b150?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="slide-content">
+                        <h2>Daily Dairy Delivery – Subscribe & Save</h2>
+                        <p>Get fresh milk, curd, paneer and more delivered daily with 15% discount</p>
+                        <a href="#" class="btn">Explore Packs</a>
                     </div>
                 </div>
-                
-                <div class="stat-card">
-                    <div class="stat-title">Active Projects</div>
-                    <div class="stat-value">8</div>
-                    <div class="stat-change up">
-                        <i class="fas fa-arrow-up"></i> 2 new this week
-                    </div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-title">Revenue This Month</div>
-                    <div class="stat-value">$8,450</div>
-                    <div class="stat-change up">
-                        <i class="fas fa-arrow-up"></i> 12% from last month
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="slide-content">
+                        <h2>Weekend Seafood Special – Free Delivery!</h2>
+                        <p>Fresh prawns, fish and crabs for your weekend feast</p>
+                        <a href="#" class="btn">Order Now</a>
                     </div>
                 </div>
             </div>
             
-            <!-- Main Content Grid -->
-            <div class="row">
-                <div class="col-md-8">
-                    <!-- Calendar Section -->
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5 class="card-title">Booking Calendar</h5>
-                        </div>
-                        <div class="card-body">
-                            <div id="calendar"></div>
-                        </div>
+            <div class="trust-badges">
+                <div class="badge">
+                    <i class="fas fa-truck"></i>
+                    <span>Free Delivery Over ₹500</span>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-lock"></i>
+                    <span>100% Secure Payments</span>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-snowflake"></i>
+                    <span>Hygienic Cold Packaging</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Categories -->
+    <section class="featured-categories">
+        <div class="container">
+            <h2 class="section-title">Shop by Category</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Goat Meat">
+                    <div class="category-overlay">
+                        <h3>Goat Meat</h3>
+                        <p>Fresh cuts for all your recipes</p>
                     </div>
-                    
-                    <!-- Recent Projects -->
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5 class="card-title">Recent Projects</h5>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1589927986089-35812388d1f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Chicken">
+                    <div class="category-overlay">
+                        <h3>Chicken</h3>
+                        <p>Farm raised, antibiotic-free</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Seafood">
+                    <div class="category-overlay">
+                        <h3>Seafood</h3>
+                        <p>Fresh catch from the coast</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Dairy Products">
+                    <div class="category-overlay">
+                        <h3>Dairy Products</h3>
+                        <p>Milk, cheese, butter and more</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Best Selling Products -->
+    <section class="best-sellers">
+        <div class="container">
+            <h2 class="section-title">Best Selling Products</h2>
+            <div class="product-carousel">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Fresh Goat Shoulder Curry Cut">
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Goat Shoulder Curry Cut</h3>
+                        <div class="weight-options">
+                            <span class="weight-option">500g</span>
+                            <span class="weight-option">1kg</span>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Project</th>
-                                            <th>Client</th>
-                                            <th>Start Date</th>
-                                            <th>Deadline</th>
-                                            <th>Status</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Summer Campaign</td>
-                                            <td>Ocean Brands</td>
-                                            <td>Jun 15, 2023</td>
-                                            <td>Jul 30, 2023</td>
-                                            <td><span class="badge badge-success">In Progress</span></td>
-                                            <td>
-                                                <button class="btn btn-sm btn-outline-primary">View</button>
-                                            </td>
-                                        </tr>
-                                        <!-- More project rows -->
-                                    </tbody>
-                                </table>
+                        <div class="price">
+                            <span class="current-price">₹399</span>
+                            <span class="original-price">₹499</span>
+                            <span class="discount">20% OFF</span>
+                        </div>
+                        <button class="btn add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1589927986089-35812388d1f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Fresh Chicken Breast">
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Chicken Breast (Boneless)</h3>
+                        <div class="weight-options">
+                            <span class="weight-option">500g</span>
+                            <span class="weight-option">1kg</span>
+                        </div>
+                        <div class="price">
+                            <span class="current-price">₹249</span>
+                            <span class="original-price">₹299</span>
+                            <span class="discount">17% OFF</span>
+                        </div>
+                        <button class="btn add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Fresh Prawns">
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Tiger Prawns (Medium)</h3>
+                        <div class="weight-options">
+                            <span class="weight-option">500g</span>
+                        </div>
+                        <div class="price">
+                            <span class="current-price">₹599</span>
+                            <span class="original-price">₹699</span>
+                            <span class="discount">14% OFF</span>
+                        </div>
+                        <button class="btn add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Fresh Cow Milk">
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Cow Milk (Pasteurized)</h3>
+                        <div class="weight-options">
+                            <span class="weight-option">1L</span>
+                        </div>
+                        <div class="price">
+                            <span class="current-price">₹65</span>
+                            <span class="original-price">₹75</span>
+                            <span class="discount">13% OFF</span>
+                        </div>
+                        <button class="btn add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Goat Mince">
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Goat Mince (Keema)</h3>
+                        <div class="weight-options">
+                            <span class="weight-option">500g</span>
+                            <span class="weight-option">1kg</span>
+                        </div>
+                        <div class="price">
+                            <span class="current-price">₹349</span>
+                            <span class="original-price">₹399</span>
+                            <span class="discount">13% OFF</span>
+                        </div>
+                        <button class="btn add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Farm Fresh Eggs">
+                    </div>
+                    <div class="product-info">
+                        <h3>Farm Fresh Eggs (Pack of 12)</h3>
+                        <div class="price">
+                            <span class="current-price">₹99</span>
+                            <span class="original-price">₹120</span>
+                            <span class="discount">18% OFF</span>
+                        </div>
+                        <button class="btn add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Promotional Banners -->
+    <section class="promo-banners">
+        <div class="container">
+            <div class="promo-banner" style="background-image: url('https://images.unsplash.com/photo-1517244683847-7456b63c5969?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                <div class="promo-content">
+                    <h2>Eid Special – Bulk Goat Meat Orders at Wholesale Prices!</h2>
+                    <p>Order 5kg+ and get additional 5% discount</p>
+                    <a href="#" class="btn">Order Now</a>
+                </div>
+            </div>
+            
+            <div class="promo-banner" style="background-image: url('https://images.unsplash.com/photo-1550583724-b2692b85b150?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                <div class="promo-content">
+                    <h2>Subscribe to Dairy Box – Save 15% Monthly!</h2>
+                    <p>Get daily essentials delivered on your schedule</p>
+                    <a href="#" class="btn">Subscribe Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- USPs Section -->
+    <section class="usp-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Why Choose FarmFresh?</h2>
+            <div class="usp-grid">
+                <div class="usp-item">
+                    <div class="usp-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Next-Day Delivery</h3>
+                    <p>Order by 6PM, get it fresh the next morning</p>
+                </div>
+                
+                <div class="usp-item">
+                    <div class="usp-icon">
+                        <i class="fas fa-snowflake"></i>
+                    </div>
+                    <h3>Vacuum-Sealed & Frozen Fresh</h3>
+                    <p>Premium packaging to lock in freshness</p>
+                </div>
+                
+                <div class="usp-item">
+                    <div class="usp-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Certified Hygienic Processing</h3>
+                    <p>FSSAI approved facilities with strict quality checks</p>
+                </div>
+                
+                <div class="usp-item">
+                    <div class="usp-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>100% Money-Back Guarantee</h3>
+                    <p>Not satisfied? We'll refund your money</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial active">
+                    <p class="testimonial-text">"The chicken was so fresh, just like from the butcher! The delivery was prompt and the packaging was excellent."</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ramesh">
+                        </div>
+                        <div class="author-info">
+                            <h4>Ramesh</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="col-md-4">
-                    <!-- Quick Actions -->
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5 class="card-title">Quick Actions</h5>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Regular dairy subscriber – never missed a delivery! The milk is always fresh and the prices are reasonable."</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya">
                         </div>
-                        <div class="card-body">
-                            <button class="btn btn-block btn-primary mb-2">
-                                <i class="fas fa-calendar-plus"></i> New Booking
-                            </button>
-                            <button class="btn btn-block btn-secondary mb-2">
-                                <i class="fas fa-project-diagram"></i> Create Project
-                            </button>
-                            <button class="btn btn-block btn-success mb-2">
-                                <i class="fas fa-user-plus"></i> Add Team Member
-                            </button>
-                            <button class="btn btn-block btn-warning mb-2">
-                                <i class="fas fa-camera"></i> Equipment Request
-                            </button>
+                        <div class="author-info">
+                            <h4>Priya</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
                         </div>
                     </div>
-                    
-                    <!-- Equipment Status -->
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5 class="card-title">Equipment Status</h5>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-text">"The seafood special was amazing! The prawns were so fresh and cleaned properly. Will definitely order again."</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Arjun">
                         </div>
-                        <div class="card-body">
-                            <canvas id="equipmentChart" height="200"></canvas>
-                        </div>
-                    </div>
-                    
-                    <!-- Recent Activity -->
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5 class="card-title">Recent Activity</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="activity-feed">
-                                <div class="feed-item">
-                                    <div class="feed-icon bg-primary">
-                                        <i class="fas fa-calendar-check"></i>
-                                    </div>
-                                    <div class="feed-content">
-                                        <strong>New booking</strong> created by John Doe
-                                        <small class="text-muted">2 hours ago</small>
-                                    </div>
-                                </div>
-                                <!-- More activity items -->
+                        <div class="author-info">
+                            <h4>Arjun</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- ========== Modals ========== -->
-    <!-- New Booking Modal -->
-    <div class="modal fade" id="newBookingModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">New Studio Booking</h5>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Shop All</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
                 </div>
-                <div class="modal-body">
-                    <form id="bookingForm">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="bookingTitle">Booking Title</label>
-                                    <input type="text" class="form-control" id="bookingTitle" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="clientSelect">Client</label>
-                                    <select class="form-control" id="clientSelect" required>
-                                        <option value="">Select Client</option>
-                                        <!-- Client options -->
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="startDate">Start Date & Time</label>
-                                    <input type="datetime-local" class="form-control" id="startDate" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="endDate">End Date & Time</label>
-                                    <input type="datetime-local" class="form-control" id="endDate" required>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="bookingDescription">Description</label>
-                            <textarea class="form-control" id="bookingDescription" rows="3"></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Equipment Needed</label>
-                            <div class="equipment-checklist">
-                                <!-- Equipment checkboxes -->
-                            </div>
-                        </div>
-                    </form>
+                
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">Goat Meat</a></li>
+                        <li><a href="#">Chicken</a></li>
+                        <li><a href="#">Seafood</a></li>
+                        <li><a href="#">Dairy Products</a></li>
+                        <li><a href="#">Special Offers</a></li>
+                    </ul>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Create Booking</button>
+                
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Quality Standards</a></li>
+                        <li><a href="#">Farm Partners</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get 10% off your first order!</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Your email address">
+                        <button class="btn">Subscribe</button>
+                    </div>
+                    
+                    <div class="payment-methods">
+                        <img src="https://via.placeholder.com/40x25" alt="Razorpay">
+                        <img src="https://via.placeholder.com/40x25" alt="UPI">
+                        <img src="https://via.placeholder.com/40x25" alt="Visa">
+                        <img src="https://via.placeholder.com/40x25" alt="Mastercard">
+                        <img src="https://via.placeholder.com/40x25" alt="COD">
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
             </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 FarmFresh. All Rights Reserved.</p>
+            </div>
         </div>
-    </div>
-
-    <!-- ========== JavaScript ========== -->
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- FullCalendar -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-    <!-- Bootstrap Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </footer>
     
     <script>
-        // ========== DOM Ready ==========
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Calendar
-            const calendarEl = document.getElementById('calendar');
-            const calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                },
-                events: [
-                    // Sample events
-                    {
-                        title: 'Video Shoot',
-                        start: '2023-07-01',
-                        end: '2023-07-03',
-                        backgroundColor: '#4361ee'
-                    },
-                    // More events
-                ],
-                editable: true,
-                selectable: true,
-                select: function(info) {
-                    $('#newBookingModal').modal('show');
-                    $('#startDate').val(info.startStr);
-                    $('#endDate').val(info.endStr);
-                }
-            });
-            calendar.render();
-            
-            // Initialize Equipment Chart
-            const equipmentCtx = document.getElementById('equipmentChart').getContext('2d');
-            const equipmentChart = new Chart(equipmentCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Available', 'Booked', 'Maintenance'],
-                    datasets: [{
-                        data: [24, 10, 2],
-                        backgroundColor: [
-                            '#4cc9f0',
-                            '#4361ee',
-                            '#f72585'
-                        ],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }
-            });
-            
-            // Dark Mode Toggle
-            const darkModeToggle = document.getElementById('darkModeToggle');
-            darkModeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('dark-mode');
-                if (document.body.classList.contains('dark-mode')) {
-                    localStorage.setItem('darkMode', 'enabled');
-                    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                } else {
-                    localStorage.setItem('darkMode', 'disabled');
-                    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                }
-            });
-            
-            // Check for saved dark mode preference
-            if (localStorage.getItem('darkMode') === 'enabled') {
-                document.body.classList.add('dark-mode');
-                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            }
-            
-            // Sidebar Toggle for Mobile
-            const sidebarToggle = document.getElementById('sidebarToggle');
-            const sidebar = document.querySelector('.sidebar');
-            
-            sidebarToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('active');
-            });
-            
-            // Form Validation
-            $('#bookingForm').validate({
-                rules: {
-                    bookingTitle: "required",
-                    clientSelect: "required",
-                    startDate: "required",
-                    endDate: "required"
-                },
-                messages: {
-                    bookingTitle: "Please enter a booking title",
-                    clientSelect: "Please select a client",
-                    startDate: "Please select a start date",
-                    endDate: "Please select an end date"
-                },
-                errorElement: 'div',
-                errorPlacement: function(error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function(element, errorClass, validClass) {
-                    $(element).addClass('is-invalid');
-                },
-                unhighlight: function(element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid');
-                }
-            });
-            
-            // Sample Data for Equipment Checklist
-            const equipmentList = [
-                { id: 1, name: 'Sony A7 IV', category: 'Camera' },
-                { id: 2, name: 'Canon EOS R5', category: 'Camera' },
-                { id: 3, name: 'Blackmagic URSA Mini', category: 'Camera' },
-                { id: 4, name: 'DJI Ronin-S', category: 'Stabilizer' },
-                { id: 5, name: 'Sennheiser MKH 416', category: 'Microphone' },
-                { id: 6, name: 'Aputure 300D', category: 'Lighting' }
-            ];
-            
-            // Populate Equipment Checklist
-            const equipmentChecklist = document.querySelector('.equipment-checklist');
-            equipmentList.forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'form-check';
-                div.innerHTML = `
-                    <input class="form-check-input" type="checkbox" id="equip-${item.id}">
-                    <label class="form-check-label" for="equip-${item.id}">
-                        ${item.name} <small class="text-muted">${item.category}</small>
-                    </label>
-                `;
-                equipmentChecklist.appendChild(div);
-            });
-            
-            // Sample Data for Client Select
-            const clients = [
-                { id: 1, name: 'Ocean Brands' },
-                { id: 2, name: 'Tech Innovations' },
-                { id: 3, name: 'Creative Media' },
-                { id: 4, name: 'Global Productions' }
-            ];
-            
-            // Populate Client Select
-            const clientSelect = document.getElementById('clientSelect');
-            clients.forEach(client => {
-                const option = document.createElement('option');
-                option.value = client.id;
-                option.textContent = client.name;
-                clientSelect.appendChild(option);
-            });
-            
-            // Sample Data for Recent Projects Table
-            const projects = [
-                { 
-                    name: 'Summer Campaign', 
-                    client: 'Ocean Brands', 
-                    start: 'Jun 15, 2023', 
-                    end: 'Jul 30, 2023', 
-                    status: 'In Progress' 
-                },
-                // More projects
-            ];
-            
-            // Populate Recent Projects Table
-            const projectsTable = document.querySelector('.table tbody');
-            projects.forEach(project => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${project.name}</td>
-                    <td>${project.client}</td>
-                    <td>${project.start}</td>
-                    <td>${project.end}</td>
-                    <td><span class="badge badge-success">${project.status}</span></td>
-                    <td><button class="btn btn-sm btn-outline-primary">View</button></td>
-                `;
-                projectsTable.appendChild(tr);
-            });
-            
-            // Sample Data for Activity Feed
-            const activities = [
-                { 
-                    icon: 'calendar-check', 
-                    color: 'primary', 
-                    text: 'New booking created by John Doe', 
-                    time: '2 hours ago' 
-                },
-                // More activities
-            ];
-            
-            // Populate Activity Feed
-            const activityFeed = document.querySelector('.activity-feed');
-            activities.forEach(activity => {
-                const div = document.createElement('div');
-                div.className = 'feed-item';
-                div.innerHTML = `
-                    <div class="feed-icon bg-${activity.color}">
-                        <i class="fas fa-${activity.icon}"></i>
-                    </div>
-                    <div class="feed-content">
-                        <strong>${activity.text}</strong>
-                        <small class="text-muted">${activity.time}</small>
-                    </div>
-                `;
-                activityFeed.appendChild(div);
-            });
-        });
+        // Simple slider functionality for hero banner
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
         
-        // ========== Utility Functions ==========
-        function debounce(func, wait, immediate) {
-            let timeout;
-            return function() {
-                const context = this, args = arguments;
-                const later = function() {
-                    timeout = null;
-                    if (!immediate) func.apply(context, args);
-                };
-                const callNow = immediate && !timeout;
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-                if (callNow) func.apply(context, args);
-            };
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
         }
         
-        function throttle(func, limit) {
-            let lastFunc;
-            let lastRan;
-            return function() {
-                const context = this;
-                const args = arguments;
-                if (!lastRan) {
-                    func.apply(context, args);
-                    lastRan = Date.now();
-                } else {
-                    clearTimeout(lastFunc);
-                    lastFunc = setTimeout(function() {
-                        if ((Date.now() - lastRan) >= limit) {
-                            func.apply(context, args);
-                            lastRan = Date.now();
-                        }
-                    }, limit - (Date.now() - lastRan));
-                }
-            };
+        function nextSlide() {
+            showSlide(currentSlide + 1);
         }
         
-        // ========== API Services ==========
-        const ApiService = {
-            getBookings: function() {
-                return fetch('/api/bookings')
-                    .then(response => response.json())
-                    .catch(error => console.error('Error:', error));
-            },
-            
-            createBooking: function(bookingData) {
-                return fetch('/api/bookings', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(bookingData)
-                })
-                .then(response => response.json())
-                .catch(error => console.error('Error:', error));
-            },
-            
-            getEquipment: function() {
-                return fetch('/api/equipment')
-                    .then(response => response.json())
-                    .catch(error => console.error('Error:', error));
-            },
-            
-            getProjects: function() {
-                return fetch('/api/projects')
-                    .then(response => response.json())
-                    .catch(error => console.error('Error:', error));
-            }
-        };
+        // Auto slide every 5 seconds
+        setInterval(nextSlide, 5000);
         
-        // ========== Application Modules ==========
-        class BookingManager {
-            constructor() {
-                this.bookings = [];
-            }
-            
-            loadBookings() {
-                return ApiService.getBookings()
-                    .then(data => {
-                        this.bookings = data;
-                        return this.bookings;
-                    });
-            }
-            
-            addBooking(booking) {
-                return ApiService.createBooking(booking)
-                    .then(newBooking => {
-                        this.bookings.push(newBooking);
-                        return newBooking;
-                    });
-            }
+        // Testimonial slider
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial');
+        
+        function showTestimonial(n) {
+            testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+            currentTestimonial = (n + testimonials.length) % testimonials.length;
+            testimonials[currentTestimonial].classList.add('active');
         }
         
-        class EquipmentManager {
-            constructor() {
-                this.equipment = [];
-            }
-            
-            loadEquipment() {
-                return ApiService.getEquipment()
-                    .then(data => {
-                        this.equipment = data;
-                        return this.equipment;
-                    });
-            }
-            
-            getAvailableEquipment() {
-                return this.equipment.filter(item => item.status === 'available');
-            }
+        function nextTestimonial() {
+            showTestimonial(currentTestimonial + 1);
         }
         
-        // Initialize Application Modules
-        const bookingManager = new BookingManager();
-        const equipmentManager = new EquipmentManager();
+        // Auto slide testimonials every 7 seconds
+        setInterval(nextTestimonial, 7000);
         
-        // Load initial data
-        Promise.all([
-            bookingManager.loadBookings(),
-            equipmentManager.loadEquipment()
-        ]).then(() => {
-            console.log('Application data loaded');
-        });
+        // Mobile menu toggle would be added here in a real implementation
     </script>
 </body>
 </html>
+
+
